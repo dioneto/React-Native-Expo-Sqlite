@@ -8,16 +8,7 @@ import { Font, SQLite } from 'expo';
 const db = SQLite.openDatabase('Milagro.db')
 
 export default class Edit extends React.Component {
-    state = { loading: true, name: '', age: '', id: 0 };
-  async componentWillMount() {
-    await Font.loadAsync({
-      Roboto: require("native-base/Fonts/Roboto.ttf"),
-      Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"),
-      Ionicons: require("@expo/vector-icons/fonts/Ionicons.ttf"),
-    });
-    this.setState({ loading: false });
-
-  }
+    state = {  name: '', age: '', id: 0 };
 
   componentDidMount() {
     const id = this.props.navigation.getParam("id");
@@ -27,7 +18,7 @@ export default class Edit extends React.Component {
   }
 
   fetch(id) {
-    var query = "SELECT * FROM tbl_milagro WHERE id= ?";
+    var query = "SELECT * FROM tbl_milagros WHERE id= ?";
     var params = [id];
     db.transaction((tx) => {
       tx.executeSql(query, params, (tx, results) => {
@@ -46,7 +37,7 @@ export default class Edit extends React.Component {
   }
 
   update(id, name, age) {
-    var query = "UPDATE tbl_milagro SET name= ?, age= ? WHERE id= ?";
+    var query = "UPDATE tbl_milagros SET name= ?, age= ? WHERE id= ?";
     var params = [name, age, id];
     db.transaction((tx) => {
       tx.executeSql(query, params, (tx, results) => {
@@ -91,14 +82,14 @@ export default class Edit extends React.Component {
                       onChangeText={(val) => this.setState({ age: val })} value={this.state.age}
                     placeholder='Age'
                     leftIconContainerStyle={{ marginRight: 15 }}
-                    inputContainerStyle={{ marginTop: 25, width: 330, marginLeft: 30 }}
+                    inputContainerStyle={{ marginTop: 25, width: 330, marginLeft: 30 , marginBottom:20}}
                 />
                
                 <Button
                     onPress={() => {
                      this.handleSave();
                     }}
-                    title="Press Me"
+                    title="Save Information"
                 />
                 
             </View>

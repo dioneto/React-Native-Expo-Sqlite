@@ -15,14 +15,9 @@ export default class Home extends React.Component {
     state = { loading: true, dataTodo: [], search: '' };
 
     async componentWillMount() {
-        await Font.loadAsync({
-            Roboto: require("native-base/Fonts/Roboto.ttf"),
-            Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"),
-            Ionicons: require("@expo/vector-icons/fonts/Ionicons.ttf"),
-        });
         db.transaction(tx => {
             tx.executeSql(
-                'create table if not exists tbl_milagro (id integer primary key not null, name text,age text);'
+                'create table if not exists tbl_milagros (id integer primary key not null, name text,age text);'
             );
         });
         this.setState({ loading: false });
@@ -38,7 +33,7 @@ export default class Home extends React.Component {
     }
 
     fetchData(search) {
-        var query = "SELECT * FROM tbl_milagro WHERE name LIKE '%" + search + "%'";
+        var query = "SELECT * FROM tbl_milagros WHERE name LIKE '%" + search + "%'";
         var params = [];
         db.transaction((tx) => {
             tx.executeSql(query, params, (tx, results) => {
@@ -55,7 +50,7 @@ export default class Home extends React.Component {
     }
 
     deleteData(id) {
-        var query = "DELETE FROM tbl_milagro WHERE id = ?";
+        var query = "DELETE FROM tbl_milagros WHERE id = ?";
         var params = [id];
         db.transaction((tx) => {
             tx.executeSql(query, params, (tx, results) => {
