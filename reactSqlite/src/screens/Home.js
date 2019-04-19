@@ -77,9 +77,9 @@ export default class Home extends React.Component {
     handleAdd() {
         this.props.navigation.navigate('Add');
     }
-    handleEdit() {
-        this.props.navigation.navigate('Edit');
-    }
+    handleEdit(id) {
+        this.props.navigation.navigate('Edit', { id });
+      }
 
     render() {
         if (this.state.loading) {
