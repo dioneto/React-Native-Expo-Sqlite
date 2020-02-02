@@ -6,7 +6,9 @@ import { Spinner, ListItem, Separator } from 'native-base';
 import IconF from 'react-native-vector-icons/FontAwesome';
 const AlertMsg = 'Estas seguro que deseas eliminar la informacion';
 const AlertCancel = 'Ha cancelado la eliminacion';
-import { Font, SQLite } from 'expo';
+import { Font} from 'expo';
+
+import * as SQLite from 'expo-sqlite';
 
 const db = SQLite.openDatabase('Milagro.db')
 
@@ -131,20 +133,20 @@ export default class Home extends React.Component {
                 <Header
                     placement="left"
                     leftComponent={{ text: '                   Home', style: { color: '#fff', fontSize: 19 } }}
-                    rightComponent={{ icon: 'edit', color: '#fff', onPress: () => this.handleEdit() }}
+                    // rightComponent={{ icon: 'edit', color: '#fff', onPress: () => this.handleEdit() }}
                     centerComponent={{ icon: 'add-circle', color: '#fff', onPress: () => this.handleAdd() }}
                     containerStyle={{ backgroundColor: '#2B2F33' }}
                     leftContainerStyle={{ marginLeft: 65 }}
                     rightContainerStyle={{ marginRight: 18 }}
                     centerContainerStyle={{ marginLeft: 86 }}
                 />
-                <SearchBar
+                {/* <SearchBar
                     platform={"ios"}
                     placeholder="Search by name"
                     onChangeText={(val) => this.handleSearch(val)} value={this.state.search} value={this.state.search}
                     containerStyle={{ backgroundColor: '#F8FBFD', borderColor: '#fff', borderWidth: 2, marginTop: 10 }}
                     placeholderTextColor={'#2B2F33'}
-                />
+                /> */}
                 <ScrollView>
 
                     <View>

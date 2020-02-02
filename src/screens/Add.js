@@ -3,7 +3,10 @@ import { Text, View, ScrollView, Alert, Linking,Button } from 'react-native';
 import { Header, Input, SearchBar,  } from 'react-native-elements';
 import { Collapse, CollapseHeader, CollapseBody } from "accordion-collapse-react-native";
 import { Spinner, ListItem, Separator } from 'native-base';
-import { Font, SQLite } from 'expo';
+import { Font } from 'expo';
+
+import * as SQLite from 'expo-sqlite';
+
 
 const db = SQLite.openDatabase('Milagro.db')
 
